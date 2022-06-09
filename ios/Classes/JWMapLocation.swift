@@ -21,7 +21,10 @@ typealias markBlock = ((CLPlacemark?) -> ())
      
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        self.statusUpdateBlock?(status)
+        DispatchQueue.main.async {
+            self.statusUpdateBlock?(status)
+        }
+        
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let loc = locations.last {

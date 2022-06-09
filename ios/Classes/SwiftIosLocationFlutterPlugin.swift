@@ -13,7 +13,8 @@ public class SwiftIosLocationFlutterPlugin: NSObject, FlutterPlugin {
           JWMapLocation.startLoc { mark in
               result(["status" : true,"city": mark?.locality ?? "Sydney"])
           } statusUpdateBlock: { status in
-              result(["status":false,"locStatus":status])
+            
+//              result(["status":false,"locStatus":status])
           }
 
       }

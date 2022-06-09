@@ -16,8 +16,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-  final _iosLocationFlutterPlugin = IosLocationFlutterPlugin();
+  Map<String,dynamic> _platformVersion = {};
+  final _iosLocationFlutterPlugin = IosLocationFlutterPlugin.instance;
 
   @override
   void initState() {
@@ -27,14 +27,14 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String platformVersion;
+    Map<String,dynamic> platformVersion = {};
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
       platformVersion =
-          await _iosLocationFlutterPlugin.getPlatformVersion() ?? 'Unknown platform version';
+          await _iosLocationFlutterPlugin.startLocation();
     } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+
     }
 
     // If the widget was removed from the tree while the asynchronous platform
